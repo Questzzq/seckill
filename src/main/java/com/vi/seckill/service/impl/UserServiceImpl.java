@@ -3,6 +3,7 @@ package com.vi.seckill.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.vi.seckill.common.ResBean;
 import com.vi.seckill.common.ResBeanEnum;
+import com.vi.seckill.common.ThreadLocalCommon;
 import com.vi.seckill.exception.GlobalException;
 import com.vi.seckill.mapper.UserMapper;
 import com.vi.seckill.pojo.User;

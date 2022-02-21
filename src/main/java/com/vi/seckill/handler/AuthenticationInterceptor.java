@@ -7,10 +7,10 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.vi.seckill.annotation.PassToken;
 import com.vi.seckill.common.ResBeanEnum;
+import com.vi.seckill.common.ThreadLocalCommon;
 import com.vi.seckill.exception.GlobalException;
 import com.vi.seckill.mapper.UserMapper;
 import com.vi.seckill.pojo.User;
-import com.vi.seckill.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -71,6 +71,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         } catch (JWTVerificationException e) {
             throw new RuntimeException("401 JWTVerificationException");
         }
+        ThreadLocalCommon.setLoginUserData(String.valueOf(user.getId()));
         return true;
     }
 
@@ -78,7 +79,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest httpServletRequest,
                            HttpServletResponse httpServletResponse,
                            Object object, ModelAndView modelAndView) throws Exception {
-
     }
 
     @Override
