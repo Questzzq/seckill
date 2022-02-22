@@ -3,11 +3,10 @@ package com.vi.seckill.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.vi.seckill.common.ResBean;
 import com.vi.seckill.common.ResBeanEnum;
-import com.vi.seckill.common.ThreadLocalCommon;
 import com.vi.seckill.exception.GlobalException;
 import com.vi.seckill.mapper.UserMapper;
 import com.vi.seckill.pojo.User;
-import com.vi.seckill.service.UserService;
+import com.vi.seckill.service.IUserService;
 import com.vi.seckill.utils.JwtUtil;
 import com.vi.seckill.utils.MD5Util;
 import com.vi.seckill.vo.LoginVo;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
     @Autowired
     private UserMapper userMapper;
 

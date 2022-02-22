@@ -8,6 +8,8 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
+ * 序列化之后存的格式就不是二进制了，redis默认的就是jdk的序列化，即二进制形式
+ * GenericJackson2Json不需要传Object，而Jackson2Json则需要传Object
  * @author Eric Tseng
  * @description RedisConfig
  * @since 2022/2/19 21:19

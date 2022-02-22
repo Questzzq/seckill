@@ -1,23 +1,20 @@
-package com.vi.seckill.mapper;
+package com.vi.seckill.service;
 
 import com.vi.seckill.pojo.Goods;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.vi.seckill.vo.GoodsVo;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ *  服务类
  * </p>
  *
  * @author Eric Tseng
  * @since 2022-02-20
  */
-@Mapper
-public interface GoodsMapper extends BaseMapper<Goods> {
-
+public interface IGoodsService extends IService<Goods> {
     List<GoodsVo> findGoodsVo();
 
     GoodsVo getDetailByGoodsId(Long id);

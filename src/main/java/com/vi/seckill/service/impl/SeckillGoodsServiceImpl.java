@@ -2,7 +2,7 @@ package com.vi.seckill.service.impl;
 
 import com.vi.seckill.pojo.SeckillGoods;
 import com.vi.seckill.mapper.SeckillGoodsMapper;
-import com.vi.seckill.service.SeckillGoodsService;
+import com.vi.seckill.service.ISeckillGoodsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-02-20
  */
 @Service
-public class SeckillGoodsServiceImpl extends ServiceImpl<SeckillGoodsMapper, SeckillGoods> implements SeckillGoodsService {
+public class SeckillGoodsServiceImpl extends ServiceImpl<SeckillGoodsMapper, SeckillGoods> implements ISeckillGoodsService {
 
 }

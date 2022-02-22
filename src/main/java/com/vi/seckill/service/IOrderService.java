@@ -1,6 +1,6 @@
 package com.vi.seckill.service;
 
-import com.vi.seckill.pojo.SeckillGoods;
+import com.vi.seckill.pojo.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Eric Tseng
  * @since 2022-02-20
  */
-public interface SeckillGoodsService extends IService<SeckillGoods> {
+public interface IOrderService extends IService<Order> {
 
 }

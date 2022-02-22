@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2022-02-19
  */
 @Service
-public interface UserService extends IService<User> {
+public interface IUserService extends IService<User> {
     /**
      * 登录接口
      * @param loginVo
