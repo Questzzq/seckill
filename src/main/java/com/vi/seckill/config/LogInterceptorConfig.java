@@ -1,6 +1,5 @@
 package com.vi.seckill.config;
 
-import com.vi.seckill.handler.AuthenticationInterceptor;
 import com.vi.seckill.handler.LogInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +12,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @since 2022/2/20 20:58
  */
 @Configuration
-public class InterceptorConfig implements WebMvcConfigurer {
+public class LogInterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor())
+        registry.addInterceptor(logInterceptor())
                 .addPathPatterns("/**");
     }
 
     @Bean
-    public AuthenticationInterceptor authenticationInterceptor() {
-        return new AuthenticationInterceptor();
+    public LogInterceptor logInterceptor() {
+        return new LogInterceptor();
     }
 }

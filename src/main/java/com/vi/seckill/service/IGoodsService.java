@@ -18,4 +18,6 @@ public interface IGoodsService extends IService<Goods> {
     List<GoodsVo> findGoodsVo();
 
     GoodsVo getDetailByGoodsId(Long id);
+
+    int saveGood(Goods goods);
 }

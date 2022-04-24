@@ -16,6 +16,23 @@
   <sql id="Base_Column_List">
     id, goods_name, goods_title, goods_img, goods_detail, goods_price, goods_stock
   </sql>
+  <insert id="saveGood" parameterType="com.vi.seckill.pojo.Goods">
+    insert
+    into
+      t_goods
+    (goods_name,
+     goods_title,
+     goods_img,
+     goods_detail,
+     goods_price,
+     goods_stock)
+    values(#{goods.goodsName},
+           #{goods.goodsTitle},
+           #{goods.goodsImg},
+           #{goods.goodsDetail},
+           #{goods.goodsPrice},
+           #{goods.goodsStock})
+  </insert>
 
   <select id="findGoodsVo" resultType="com.vi.seckill.vo.GoodsVo">
     select
