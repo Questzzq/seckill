@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author Eric Tseng
@@ -24,8 +22,24 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
     @Autowired
     private SysLogMapper sysLogMapper;
 
+    @Async
     @Override
-    public void insertSysLog(SysLog log) {
-        sysLogMapper.insert(log);
+    public void insertSysLog(long excTime, String code, String requestUri, String ip) {
+        try {
+            Thread.sleep(5000);
+            System.out.println("---------------------");
+            SysLog log = new SysLog()
+                    .setExcTime(excTime)
+                    .setCode(code)
+                    .setUri(requestUri)
+                    .setUsrId(ThreadLocalCommon.getLoginUserData())
+                    .setUuid(ThreadLocalCommon.getLogUuid())
+                    .setIp(ip);
+            sysLogMapper.insert(log);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            ThreadLocalCommon.remove();
+        }
     }
 }

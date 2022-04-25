@@ -20,7 +20,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-@TableName("sys_log")
+@TableName("err_log")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

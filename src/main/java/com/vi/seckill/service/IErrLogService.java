@@ -12,5 +12,6 @@ import com.vi.seckill.pojo.ErrLog;
  * @since 2022-03-06
  */
 public interface IErrLogService extends IService<ErrLog> {
-    void insertErrLog(ErrLog log);
+
+    void insertErrLog(long excTime, String errorCode, String requestURI, String s);
 }

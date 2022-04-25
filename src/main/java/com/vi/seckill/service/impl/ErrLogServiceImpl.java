@@ -1,6 +1,7 @@
 package com.vi.seckill.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.vi.seckill.common.ThreadLocalCommon;
 import com.vi.seckill.mapper.ErrLogMapper;
 import com.vi.seckill.pojo.ErrLog;
 import com.vi.seckill.service.IErrLogService;
@@ -22,7 +23,25 @@ public class ErrLogServiceImpl extends ServiceImpl<ErrLogMapper, ErrLog> impleme
     private ErrLogMapper errLogMapper;
 
     @Override
-    public void insertErrLog(ErrLog log) {
-        errLogMapper.insert(log);
+    @Async
+    public void insertErrLog(long excTime, String code, String requestUri, String ip) {
+        try {
+            Thread.sleep(5000);
+            System.out.println("---------------------");
+            System.out.println(ThreadLocalCommon.getException().toString());
+            ErrLog log = new ErrLog()
+                    .setExcTime(excTime)
+                    .setCode(code)
+                    .setExp(ThreadLocalCommon.getException().toString())
+                    .setUri(requestUri)
+                    .setUsrId(ThreadLocalCommon.getLoginUserData())
+                    .setUuid(ThreadLocalCommon.getLogUuid())
+                    .setIp(ip);
+            errLogMapper.insert(log);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            ThreadLocalCommon.remove();
+        }
     }
 }

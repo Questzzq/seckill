@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -38,8 +39,9 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     @Override
     public int saveGood(Goods goods) {
         goodsMapper.saveGood(goods);
-        int i = 1/0;
-        System.out.println(i);
+        if("锤子手机".equals(goods.getGoodsName())) {
+            throw new NullPointerException();
+        }
         return goodsMapper.saveGood(goods);
     }
 }

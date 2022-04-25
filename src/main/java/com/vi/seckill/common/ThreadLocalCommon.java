@@ -1,5 +1,7 @@
 package com.vi.seckill.common;
 
+import com.alibaba.ttl.TransmittableThreadLocal;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class ThreadLocalCommon {
     public static final String START_TIME = "startTime";
     public static final String EXCEPTION = "exception";
 
-    private static ThreadLocal<Map<String, Object>> LOCAL = new ThreadLocal<>();
+    private static ThreadLocal<Map<String, Object>> LOCAL = new TransmittableThreadLocal<>();
 
     public static void setLogUuid(String uuid) {
         set(LOG_UUID, uuid);

@@ -12,5 +12,5 @@ import com.vi.seckill.pojo.SysLog;
  * @since 2022-03-06
  */
 public interface ISysLogService extends IService<SysLog> {
-    void insertSysLog(SysLog log);
+    void insertSysLog(long excTime, String code, String requestUri, String ip);
 }

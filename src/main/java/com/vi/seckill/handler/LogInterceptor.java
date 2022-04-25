@@ -1,8 +1,6 @@
 package com.vi.seckill.handler;
 
 import com.vi.seckill.common.ThreadLocalCommon;
-import com.vi.seckill.pojo.ErrLog;
-import com.vi.seckill.pojo.SysLog;
 import com.vi.seckill.service.IErrLogService;
 import com.vi.seckill.service.ISysLogService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,30 +46,11 @@ public class LogInterceptor implements HandlerInterceptor {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
         long endTime = System.currentTimeMillis();
         long excTime = endTime - ThreadLocalCommon.getStartTime();
-        // todo 保存日志
-        // int code = response.getStatus();
         if (ThreadLocalCommon.getException() == null) {
-            SysLog log = new SysLog()
-                    .setExcTime(excTime)
-                    .setCode(SUCCESS_CODE)
-                    .setUri(request.getRequestURI())
-                    .setUsrId(ThreadLocalCommon.getLoginUserData())
-                    .setUuid(ThreadLocalCommon.getLogUuid())
-                    .setIp(request.getRemoteHost() + "-" + request.getRemoteAddr());
-            logService.insertSysLog(log);
+            logService.insertSysLog(excTime, SUCCESS_CODE, request.getRequestURI(), request.getRemoteHost() + "-" + request.getRemoteAddr());
         } else {
-            ErrLog log = new ErrLog()
-                    .setExcTime(excTime)
-                    .setCode(ERROR_CODE)
-                    .setExp(ex.getMessage().substring(0, 2000))
-                    .setUri(request.getRequestURI())
-                    .setUsrId(ThreadLocalCommon.getLoginUserData())
-                    .setUuid(ThreadLocalCommon.getLogUuid())
-                    .setIp(request.getRemoteHost() + "-" + request.getRemoteAddr());
-            errLogService.insertErrLog(log);
+            errLogService.insertErrLog(excTime, ERROR_CODE, request.getRequestURI(), request.getRemoteHost() + "-" + request.getRemoteAddr());
         }
         log.info(ThreadLocalCommon.getLogUuid() + " execute time: " + excTime);
-        // 清理资源，防止OOM
-        ThreadLocalCommon.remove();
     }
 }
